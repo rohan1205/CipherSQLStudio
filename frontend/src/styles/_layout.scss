@@ -1,0 +1,35 @@
+@import 'variables';
+@import 'mixins';
+
+/* container to center maximum width content */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+/* two-column layout on larger screens */
+.assignment-page__layout {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include tablet {
+    flex-direction: row;
+  }
+}
+
+.assignment-page__left,
+.assignment-page__right {
+  flex: 1;
+}
+
+.assignment-page__right {
+  position: relative;
+}
+
+/* sticky element helpers */
+.sticky-right {
+  position: sticky;
+  top: $spacing-lg;
+}

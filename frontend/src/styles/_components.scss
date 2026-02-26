@@ -1,0 +1,274 @@
+@import 'variables';
+@import 'mixins';
+
+/* general card class used across the app */
+.card {
+  @include card;
+}
+
+/* topbar/title area */
+.assignment-page__topbar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+}
+
+.assignment-page__back {
+  background: transparent;
+  border: none;
+  color: $text-secondary;
+  font-size: 14px;
+  @include transition(transform);
+  &:hover {
+    color: $text-primary;
+    transform: scale(1.03);
+  }
+}
+
+.assignment-page__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+/* difficulty badge common style */
+.badge,
+.assignment-page__badge,
+.assignment-card__badge {
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $text-primary;
+}
+
+.badge--easy,
+.assignment-page__badge--easy,
+.assignment-card__badge--easy {
+  background: $easy;
+}
+.badge--medium,
+.assignment-page__badge--medium,
+.assignment-card__badge--medium {
+  background: $medium;
+}
+.badge--hard,
+.assignment-page__badge--hard,
+.assignment-card__badge--hard {
+  background: $hard;
+}
+
+/* question section */
+.assignment-page__question,
+.assignment-page__schema,
+.hint-panel,
+.assignment-page__editor,
+.assignment-page__results {
+  @extend .card;
+  margin-bottom: $spacing-lg;
+}
+
+.assignment-page__label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+  color: $text-primary;
+}
+
+/* hint panel */
+.hint-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.hint-panel__btn {
+  background: $primary;
+  color: $text-primary;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-sm;
+  @include transition(transform);
+  &:hover {
+    transform: scale(1.03);
+  }
+  @include focus-glow($primary);
+}
+
+.hint-panel__box {
+  background: $bg-dark;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+}
+
+.hint-panel__label {
+  font-weight: 600;
+  margin-bottom: $spacing-xs;
+}
+
+.hint-panel__text {
+  font-size: 14px;
+}
+
+/* editor header and run button */
+.assignment-page__editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+}
+
+.assignment-page__run-btn {
+  background: $primary;
+  color: $text-primary;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  @include transition(transform);
+  &:hover {
+    transform: scale(1.03);
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  @include focus-glow($primary);
+}
+
+/* home page */
+.home__header {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+.home__title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.home__subtitle {
+  color: $text-secondary;
+  font-size: 16px;
+}
+
+.home__section-title {
+  font-size: 24px;
+  margin-bottom: $spacing-md;
+}
+
+.home__grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* assignment list cards */
+.assignment-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  &:hover {
+    background: darken($bg-card, 5%);
+  }
+}
+
+.assignment-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignment-card__title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.assignment-card__description {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.assignment-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignment-card__btn {
+  background: $primary;
+  color: $text-primary;
+  border: none;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  @include transition(transform);
+  &:hover {
+    transform: scale(1.03);
+  }
+  @include focus-glow($primary);
+}
+
+/* results table styling */
+.results-table {
+  width: 100%;
+  overflow-x: auto;
+  opacity: 0;
+  animation: fade-in 0.3s forwards;
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+.results-table__wrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.results-table__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table__th,
+.results-table__td {
+  padding: $spacing-sm $spacing-md;
+  border-bottom: 1px solid $border-color;
+  text-align: left;
+  font-size: 14px;
+}
+
+.results-table__th {
+  position: sticky;
+  top: 0;
+  background: $bg-card;
+  z-index: 2;
+}
+
+.results-table__tr:nth-child(even) {
+  background: rgba($text-primary, 0.05);
+}
+
+.results-table__tr:hover {
+  background: rgba($text-primary, 0.1);
+}
+
+.results-table--error,
+.results-table--empty {
+  @extend .card;
+  text-align: center;
+}
+
+.results-table__count {
+  margin-bottom: $spacing-sm;
+  font-size: 14px;
+}
+
+.results-table__error,
+.results-table__empty {
+  color: $warning;
+}
